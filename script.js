@@ -72,30 +72,69 @@ console.log(firstName + ' ' + lastName);
 
 /*************
  * Basic operators
- */
 var now, yearTyler, yearMark;
-now = 2021; 
-yearTyler = now - 77;
-yearMark = now - 33;
+now = 2020; 
+ageTyler = 30;
+ageMark = 33;
+
+
+//Math operators
+yearTyler = now - ageTyler;
+yearMark = now - ageMark;
 
 console.log(yearTyler);
 
 console.log(now + 2);
 console.log(now * 2);
-console.log(now /10);
+console.log(now / 10);
 
 // Logical operators
+var markOlder = ageMark > ageTyler; //make a boolean
+console.log(markOlder);
 
 
+// typeof operator
+console.log(typeof markOlder); 
+console.log(typeof ageTyler);
+console.log(typeof 'Mark is older than Tyler');
+var x;
+console.log(typeof x);
+*/
 
+/********
+ * Operator precedence
+ */
 
+var now = 2018;
+var yearTyler = 1990;
+var fullAge = 18;
 
+var isFullAge = now - yearTyler >= fullAge; // true
+console.log(isFullAge);
 
+var ageTyler = now - yearTyler;
+var ageMark = 35;
+var average = (ageTyler + ageMark) / 2;
 
+console.log(average);
 
+// Multiple assignments
+var x, y;
+x = y = (3 + 5) * 4 - 6; // 8 * 4 - 6 // 32 - 6 // 26
+console.log(x, y);
 
+// 2 + 4 + 5 Left to Right
+// Assigment '=' Right to Left
 
-
+// More operators
+x *= 2;
+console.log(x);
+x += 10;
+console.log(x);
+x++;
+console.log(x);
+x += 3;
+console.log(x);
 
 
 
