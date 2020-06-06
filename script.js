@@ -41,7 +41,7 @@ Number: Floating point numbers, for decimals and intergers
 
 /****************
  * Variable mutation and type coercion
- */
+ 
 
  var firstName = 'Tyler';
  var age = 30;
@@ -52,25 +52,39 @@ Number: Floating point numbers, for decimals and intergers
  job = 'unknown';
  isMarried = false;
 
-console.log(firstName 'is a ' + age + ' years old' + job + '. Is he married?' + isMarried);
+console.log(firstName + ' is a ' + age + ' years old' + job + '. Is he married? ' + isMarried);
 
 // Variable mutation
 age = 'twent eight';
 job = 'driver';
 
-alert(firstName 'is a ' + age + ' years old' + job + '. Is he married?' + isMarried);
+alert(firstName + ' is a ' + age + ' years old' + job + '. Is he married? ' + isMarried);
+
+
+var lastName = prompt('What is his last Name?');
+console.log(firstName + ' ' + lastName);
+
+*/
 
 
 
 
 
+/*************
+ * Basic operators
+ */
+var now, yearTyler, yearMark;
+now = 2021; 
+yearTyler = now - 77;
+yearMark = now - 33;
 
+console.log(yearTyler);
 
+console.log(now + 2);
+console.log(now * 2);
+console.log(now /10);
 
-
-
-
-
+// Logical operators
 
 
 
