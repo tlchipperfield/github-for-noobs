@@ -176,7 +176,7 @@ if (age < 13) {
 /*****
  * The Ternary Operator and Switch Statements
  */
-
+/*
  var firstName = 'Tyler';
  var age = 12;
 
@@ -185,7 +185,7 @@ if (age < 13) {
 
  var drink = age >= 18 ? 'beer' : 'juice';
  console.log(drink);
-
+*/
 /* if (age >= 18) {
      var drink = 'beer'
  } else {
@@ -254,9 +254,19 @@ if (height == '23') {
  * Coding Challenge 2
  */
 
+ function teamTotal(team) {
+     var total = 0;
+     for (i = 0; i < team.length; i++){
+         total = total + team[i];
+     }
+     return total;
+ }
+
  var teamJohn = [89, 120, 103], teamMike = [116, 94, 123], teamMary = [97, 134, 105];
 
-
+var totalJohn = console.log(teamTotal(teamJohn));
+var totalMike = console.log(teamTotal(teamMike));
+var totalMary = console.log(teamTotal(teamMary));
 
 
 
