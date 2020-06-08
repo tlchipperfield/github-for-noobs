@@ -252,21 +252,206 @@ if (height == '23') {
 
 /****
  * Coding Challenge 2
- */
+ *
 
- function teamTotal(team) {
-     var total = 0;
-     for (i = 0; i < team.length; i++){
-         total = total + team[i];
-     }
-     return total;
+function teamAverage(team) {
+    var total = 0;
+    for (i = 0; i < team.length; i++){
+        total = total + team[i];
+    }
+    return total / i++;
+}
+
+function getWinner(totalJohn, totalMike, totalMary){
+    switch(true){
+        case totalJohn > totalMike && totalJohn > totalMary:
+            console.log('The winner is: Team John');
+            break;
+        case totalMike > totalJohn && totalMike > totalMary:
+            console.log('The winner is: Team Mike');
+            break;
+        case totalMary > totalJohn && totalMary > totalMike:
+            console.log('The winner is: Team Mary');
+            break;
+        default:
+            console.log('It was a draw!');
+    }
  }
 
- var teamJohn = [89, 120, 103], teamMike = [116, 94, 123], teamMary = [97, 134, 105];
+ function teamStats(totalJohn, totalMike, totalMary) {
+    console.log('Team John: ' + totalJohn);
+    console.log('Team Mike : ' + totalMike);
+    console.log('Team Mary : ' + totalMary); 
+ }
 
-var totalJohn = console.log(teamTotal(teamJohn));
-var totalMike = console.log(teamTotal(teamMike));
-var totalMary = console.log(teamTotal(teamMary));
+
+var teamJohn = [89, 120, 103], teamMike = [116, 97, 123], teamMary = [97, 134, 105];
+
+var totalJohn = teamAverage(teamJohn);
+var totalMike = teamAverage(teamMike);
+var totalMary = teamAverage(teamMary);
+
+getWinner(totalJohn, totalMike, totalMary);
+teamStats(totalJohn, totalMike, totalMary);
+
+****** End Coding Challenge
+*/
+/*********
+ * Functions
+ *
+
+
+function calculateAge(birthYear) {
+    return 2020 - birthYear;
+}
+
+var ageTyler = calculateAge(1990);
+var ageChristina = calculateAge(1989);
+var ageSomer = calculateAge(1993);
+console.log(ageTyler, ageChristina, ageSomer);
+
+
+
+function yearsUntilRetirement(year, firstName){
+    var age = calculateAge(year);
+    var retirement = 65 - age;
+    if (retirement > 0) {
+        console.log(firstName + ' retires in ' + retirement + ' years.');
+    } else {
+        console.log(firstName + ' has already retired');
+    }
+    
+}
+
+yearsUntilRetirement(1990, 'Tyler');
+yearsUntilRetirement(1999, 'Lex');
+yearsUntilRetirement(1929, 'Jane');
+
+*/
+
+/***
+ * Function Statements and Expressions
+ *
+
+ // Function declaration
+ // function whatDoYouDo(job, firstName){}
+
+ // Function expression
+ var whatDoYouDo = function(job, firstName) {
+     switch(job){
+         case 'teacher':
+            return firstName + ' teaches kids how to code';
+         case 'driver':
+            return firstName + ' drives people around town.';
+         case 'construction':
+            return firstName + ' builds awesome buildings.';
+         default:
+             return firstName + ' has another job.';
+     }
+ }
+
+ console.log(whatDoYouDo('teacher', 'Sarah'));
+ console.log(whatDoYouDo('driver', 'Matt'));
+ console.log(whatDoYouDo('construction', 'Tyler'));
+ console.log(whatDoYouDo('crazy people', 'Christina'));
+ 
+ */
+
+/****
+ * Arrays (0 BASED)
+ *
+//                0         1        2
+ var names = ['Tyler','Christina','Mark'];
+ var years = new Array(1990,1989,1942);
+
+ console.log(names);
+ console.log(names.length);
+
+// Mutate Data array
+names[1] = 'Ben';
+names[names.length] = 'Mary';
+console.log(names);
+
+// Different data types
+var tyler = ['Tyler', 'Chip', 1990, 'construction', false];
+
+tyler.push('Orange');
+tyler.unshift('Mr.');
+console.log(tyler);
+
+tyler.pop();
+tyler.pop();
+tyler.shift();
+console.log(tyler);
+
+console.log(tyler.indexOf(23));
+
+var isTeacher = tyler.indexOf('teacher') === -1 ? 'Tyler is not a teacher' : 'Tyler is a teacher';
+console.log(isTeacher);
+
+*/
+
+
+
+/**
+ * Coding Challenge #3
+ */
+
+/*
+John and his family went on a holiday and went to 3 different restaurants. The bills were $124, $48 and $268.
+
+To tip the waiter a fair amount, John created a simple tip calculator (as a function). He likes to tip 20% of the bill when the bill is less thatn $50, 15% when the bill is between $50 and $200, and 10% if the bill is more than $200.
+
+In the end, John would like to have 2 arrays:
+1) Containing all three tips (one for each bill)
+2)Containing all three final paid amounts (bill + tip).
+
+(NOTE: To calculate 20% of a value, simple multiply if with 20/100 = 0.2)
+
+Good luck 
+*/
+
+function getTotal(){
+    var tipPercent, beforeTip = [124, 48, 268], afterTip = [];
+    console.log(beforeTip);
+    //loop to go through and add tips
+    for (i = 0; i < beforeTip.length; i++){
+        //Percent Check
+       if (beforeTip[i] < 50) {tipPercent = .2;}
+       if (beforeTip[i] >= 50 && beforeTip[i] < 200) {tipPercent =.15;}
+       if (beforeTip[i] >= 200) {tipPercent =.1;}
+       // add before to after
+       afterTip[i] = (beforeTip[i] * tipPercent) + beforeTip[i];
+       console.log(afterTip[i]);
+       console.log(afterTip);
+    }
+    
+}
+
+getTotal();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
