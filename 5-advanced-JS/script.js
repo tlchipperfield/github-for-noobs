@@ -360,17 +360,6 @@ console.log(fullJapan);
 7. Suppose this code would be a plugin for other programmer to use in their code. So make sure that all your code is private and doesn't interfer with the other programmers code (Hint: we leared a special technique to do exactly that).
 */
 
-var questionClass = {
-    number: 0,
-    question: 'What is this class about?',
-    possibleAnswers: ['Pearl','VB.Net','C++','JavaScript'],
-    answer: 3,
-    displayQuestion: function() {
-        console.log(question)
-    }
-}
-
-
 function Question(question,possibleAnswers, answer) {
     this.question = question;
     this.possibleAnswers = possibleAnswers;
@@ -378,58 +367,50 @@ function Question(question,possibleAnswers, answer) {
     this.displayQuestion = function() {
         console.log(question);
         for (var i = 0; i < possibleAnswers.length; i++) {
-            console.log(i + ')' + possibleAnswers[i]);
+            console.log(i + ') ' + possibleAnswers[i]);
         }
     }
     this.checkAnswer = function(guess) {
-        if (guess == answer) {
+        if (guess === 'exit') {console.log('User exited game');
+        } else if (guess == answer) {
+            score++
             console.log('Correct');
+            console.log('You\'re current score is: ' + score);
+            askQuestion();
         } else {
             console.log('Wrong');
+            console.log('You\'re current score is: ' + score);
+            askQuestion();
         }
     }
 }
 
+function askQuestion(){
+    var questionNumber = Math.round(Math.random() * 2);
+    questionsArray[questionNumber].displayQuestion();
+    var input = prompt('Please input the correct number:');
+    questionsArray[questionNumber].checkAnswer(input);
+}
 
+
+// not very clean ? define functions to
 var classQuestion = new Question('What is this class about?',['Pearl','VB.Net','C++','JavaScript'],3);
 var functionQuestion = new Question('Functions can do the following?',['Be stored in a variable','Pass a function as an argument to another function','Return a function from a function','All of the above'],3);
 var teacherQuestion = new Question('What\'s the name of the teacher for this class',['Tyler','Mark','John','Jonas'],3);
-
 var questionsArray = [classQuestion,functionQuestion,teacherQuestion];
-var questionNumber = Math.round(Math.random() * 2);
-questionsArray[questionNumber].displayQuestion();
-var input = prompt('Please input the correct number:');
-questionsArray[questionNumber].checkAnswer(input);
+var score = 0;
+askQuestion();
 
 
-
+// Expert Level
 /*
-var john = {
-    name: 'John',
-    yearOfBirth: 1990,
-    job: 'teacher'
-};
+8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
 
-var Person = function(name, yearOfBirth, job) {
-    this.name = name;
-    this.yearOfBirth = yearOfBirth;
-    this.job = job;
-}
+9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. in this case DONT call the function from task 8.
 
+10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
 
-Person.prototype.calculateAge = function (){
-    console.log(2016 - this.yearOfBirth);
-}
-
-Person.prototype.lastName = 'Smith';
-
-var john = new Person('John', 1990, 'teacher');
-var jane = new Person('Jane', 1969, 'designer');
-var mark = new Person('Mark', 1948, 'retired');
 */
-
-
-
 
 
 
