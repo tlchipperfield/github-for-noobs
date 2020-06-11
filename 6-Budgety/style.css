@@ -71,15 +71,15 @@ Top Part
 
 .budget__income {
     margin-bottom: 10px;
-    background-color: #28b9b5;
+    background-color: #28B9B5;
 }
 
 .budget__expenses {
-    background-color: #ff5049;
+    background-color: #FF5049;
 }
 
 .budget__income--text,
-.budge__expenses--text {
+.budget__expenses--text {
     float: left;
     font-size: 13px;
     color: #444;
@@ -93,7 +93,7 @@ Top Part
 }
 
 .budget__income--percentage,
-.budget__expenses--percentage{
+.budget__expenses--percentage {
     float: left;
     width: 34px;
     font-size: 11px;
@@ -102,15 +102,15 @@ Top Part
 }
 
 .budget__expenses--percentage {
-    background-color: rbga(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     text-align: center;
-    border-radius: 3px
+    border-radius: 3px;
 }
 
 
 /* *****
 BOTTOM 
-*******//
+*******/
 
 /****** FORM ****/
 .add {
@@ -136,14 +136,14 @@ BOTTOM
     transition: border 0.3s;
 }
 
-.add_description,
+.add__description,
 .add__value {
     border: 1px solid #e7e7e7;
     background-color: #fff;
     color: inherit;
     font-family: inherit;
     font-size: 14px;
-    padding: 12px 15pxl;
+    padding: 12px 15px;
     margin-right: 10px;
     border-radius: 5px;
     transition: border 0.3s;
@@ -155,7 +155,8 @@ BOTTOM
 .add__btn {
     font-size: 35px;
     background: none;
-    color: #29b9b5;
+    border: none;
+    color: #28B9B5;
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
@@ -167,9 +168,9 @@ BOTTOM
 
 .add__type:focus,
 .add__description:focus,
-.add_value:focus {
+.add__value:focus {
     outline: none;
-    border: 1px solid #28b9b5;
+    border: 1px solid #28B9B5;
 }
 
 .add__btn:focus { outline: none; }
@@ -195,12 +196,12 @@ BOTTOM
 h2 {
     text-transform: uppercase;
     font-size: 18px;
-    font-wight: 400;
+    font-weight: 400;
     margin-bottom: 15px;
 }
 
-.icome__title { color: #28b9b5; }
-.expenses__title { color: #ff5049; }
+.icome__title { color: #28B9B5; }
+.expenses__title { color: #FF5049; }
 
 .item {
     padding: 13px;
@@ -233,13 +234,13 @@ h2 {
 
 .income .item__value,
 .income .item__delete--btn {
-    color: #28b9b5;
+    color: #28B9B5;
 }
 
 .expenses .item__value,
 .expenses .item__percentage,
 .expenses .item__delete--btn {
-    color: #ff5049;
+    color: #FF5049;
 }
 
 
@@ -272,8 +273,5 @@ h2 {
     color: #FF5049;
 }
 
-
-}
-
-.unpaid .item__percentage { box-shadow: 0 2px 6px 0 rbga(0, 0, 0, 0.1); }
+.unpaid .item__percentage { box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1); }
 .unpaid:hover .item__description { font-weight: 900; }
