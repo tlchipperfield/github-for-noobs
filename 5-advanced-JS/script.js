@@ -178,15 +178,15 @@ function interviewQuestion(job) {
 }
 
 
-var teacherQuestion = interviewQuestion('teacher');
+var q3 = interviewQuestion('teacher');
 var designQuestion = interviewQuestion('designer');
 
 
 designQuestion('John');
-teacherQuestion('Beth');
-teacherQuestion('Mark');
-teacherQuestion('Jane');
-teacherQuestion('Ann');
+q3('Beth');
+q3('Mark');
+q3('Jane');
+q3('Ann');
 
 
 interviewQuestion('teacher')('Mark');
@@ -360,46 +360,81 @@ console.log(fullJapan);
 7. Suppose this code would be a plugin for other programmer to use in their code. So make sure that all your code is private and doesn't interfer with the other programmers code (Hint: we leared a special technique to do exactly that).
 */
 
-function Question(question,possibleAnswers, answer) {
-    this.question = question;
-    this.possibleAnswers = possibleAnswers;
-    this.answer = answer;
-    this.displayQuestion = function() {
-        console.log(question);
-        for (var i = 0; i < possibleAnswers.length; i++) {
-            console.log(i + ') ' + possibleAnswers[i]);
+(function() {
+    function Question(question,possibleAnswers, answer) {
+        this.question = question;
+        this.possibleAnswers = possibleAnswers;
+        this.answer = answer;
+    }
+    // Display Question Prototype function
+    Question.prototype.displayQuestion = function() {
+        console.log(this.question);
+        for (var i = 0; i < this.possibleAnswers.length; i++) {
+            console.log(i + ') ' + this.possibleAnswers[i]);
         }
     }
-    this.checkAnswer = function(guess) {
-        if (guess === 'exit') {console.log('User exited game');
-        } else if (guess == answer) {
-            score++
+    // Check Answer Prototype function
+    Question.prototype.checkAnswer = function(guess, callback) {
+        var sc;
+
+        if (guess === this.answer) {
             console.log('Correct');
-            console.log('You\'re current score is: ' + score);
+            sc = callback(true);
+
             askQuestion();
         } else {
-            console.log('Wrong');
-            console.log('You\'re current score is: ' + score);
+            console.log('wrong')
+            sc = callback(false);
             askQuestion();
         }
     }
-}
 
-function askQuestion(){
-    var questionNumber = Math.round(Math.random() * 2);
-    questionsArray[questionNumber].displayQuestion();
-    var input = prompt('Please input the correct number:');
-    questionsArray[questionNumber].checkAnswer(input);
-}
+    Question.prototype.displayScore = function(score) {
+        console.log('You\'re current score is: ' + score);
+        console.log('==================================');
+    }
 
+    // Input questions into constructor function    
+    var q1 = new Question('What is this class about?',['Pearl','VB.Net','C++','JavaScript'],3);
+    var q2 = new Question('Functions can do the following?',['Be stored in a variable','Pass a function as an argument to another function','Return a function from a function','All of the above'],3);
+    var q3 = new Question('What\'s the name of the teacher for this class',['Tyler','Mark','John','Jonas'],3);
 
-// not very clean ? define functions to
-var classQuestion = new Question('What is this class about?',['Pearl','VB.Net','C++','JavaScript'],3);
-var functionQuestion = new Question('Functions can do the following?',['Be stored in a variable','Pass a function as an argument to another function','Return a function from a function','All of the above'],3);
-var teacherQuestion = new Question('What\'s the name of the teacher for this class',['Tyler','Mark','John','Jonas'],3);
-var questionsArray = [classQuestion,functionQuestion,teacherQuestion];
-var score = 0;
-askQuestion();
+    // define array with questions
+    var qArray = [q1,q2,q3];
+
+    //score function for closure
+    function score() {
+        var sc = 0;
+        return function(correct) {
+            if (correct) {
+                sc++;
+            }
+            return score;
+        }
+    }
+
+    // keep score var
+    var keepScore = score();
+
+    // Ask question function
+    function askQuestion(){
+         // generate a random number the length of the array
+        var n = Math.floor(Math.random() * qArray.length);
+        //ask the question and display the input box
+        qArray[n].displayQuestion();
+        var input = prompt('Please input the correct number:');
+
+        //check if the user inputed 'exit'
+        if (input === 'exit') {
+            console.log('User exited game');
+        }
+        //call checkanswer prototype
+        qArray[n].checkAnswer(parseInt(input), keepScore);
+    }
+    askQuestion();
+
+})();
+
 
 
 // Expert Level
