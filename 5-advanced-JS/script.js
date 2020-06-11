@@ -380,13 +380,11 @@ console.log(fullJapan);
         if (guess === this.answer) {
             console.log('Correct');
             sc = callback(true);
-
-            askQuestion();
         } else {
             console.log('wrong')
             sc = callback(false);
-            askQuestion();
         }
+        this.displayScore(sc);
     }
 
     Question.prototype.displayScore = function(score) {
@@ -409,7 +407,7 @@ console.log(fullJapan);
             if (correct) {
                 sc++;
             }
-            return score;
+            return sc;
         }
     }
 
@@ -424,13 +422,14 @@ console.log(fullJapan);
         qArray[n].displayQuestion();
         var input = prompt('Please input the correct number:');
 
-        //check if the user inputed 'exit'
-        if (input === 'exit') {
-            console.log('User exited game');
+        //check if the user inputed anything other than exit
+        if (input !== 'exit') {
+            //call checkanswer prototype
+            qArray[n].checkAnswer(parseInt(input), keepScore);
+            askQuestion();
         }
-        //call checkanswer prototype
-        qArray[n].checkAnswer(parseInt(input), keepScore);
     }
+
     askQuestion();
 
 })();
