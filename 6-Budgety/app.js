@@ -13,6 +13,16 @@ var budgetController = (function() {
         this.id =id;
         this.description = description;
         this.value = value;
+    };
+
+    var caculateTotal = function(type) {
+        var sum = 0;
+        // loop over array to get sum (hint: use forEach)
+        data.allItems[type].forEach(function(current) {
+            sum += current.value;
+        });
+        // Store sums in data.totals
+        data.totals[type] = sum;
     }
 
 
@@ -25,10 +35,12 @@ var budgetController = (function() {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        budget: 0,
+        percentage: -1
     };
     
-    // Budget Controller Module Returns
+    // Budget Controller Module Methods
     return {
         addItem: function(type, des, val) {
             var newItem, ID;
@@ -54,6 +66,31 @@ var budgetController = (function() {
             return newItem;
         },
 
+        calculateBudget: function() {
+
+            // calculate total income and expenses
+            caculateTotal('exp');
+            caculateTotal('inc');
+
+            // calculate the budget: income - expenses
+            data.budget = data.totals.inc - data.totals.exp;
+            // calculate theepercentage of income that we spent
+            if (data.totals.inc > 0) {
+                data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+            } else {
+                data.percentage = -1;
+            }
+        },
+
+        getBudget: function() {
+            return {
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            };
+
+        },
         testing: function() {
             console.log(data);
         }
@@ -160,11 +197,14 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     var updateBudget = function() {
         // 1. Calculate the budget
+        budgetCtrl.calculateBudget();
 
         // 2. return the budget
+        var budget = budgetCtrl.getBudget();
+
 
         // 3. Display the budget on the UI
-
+        console.log(budget);
     }
     // Add the item to either Income or Expense objects
     var ctrlAddItem = function(){
@@ -173,7 +213,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 1. Get field input data
         var input = UICtrl.getinput();
-        // Only do something if there is data
+        // Only do something iIF there is data in the input fields
         if (input.description !== "" && !isNaN(input.value) && input.value > 0 ) {
             // 2. Add the item to the budget controller
             var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
