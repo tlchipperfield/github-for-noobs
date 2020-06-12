@@ -37,3 +37,19 @@
         So how do we create modules in javascript? we use the module pattern, which is incredabliy powerful but also simple. we need to know concepts of closures and IIFES.
 
         
+
+
+        Event bubbling
+            |
+            |
+            V 
+        Target Element
+            |
+            |
+            |
+            V 
+        Event Delegation
+
+        Uses for event Delegation
+        lots of child elements that we are interested in;
+        when we want an event handler attached to an element that is not yet in the DOM when our page is laoded.
