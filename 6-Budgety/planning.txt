@@ -1,0 +1,39 @@
+    To-Do list
+
+1) add event handler
+2) Get input values
+3) add the new item to our data structure
+4) add the new item to the ui
+5) calculate budge
+6) update the ui
+
+    Structuring our code with modules
+    - Important aspect of any robust application's architecture;
+
+    -Keep the units of code for a project both cleanly separated and organized;
+    
+    - Encapsulate some data into privacy and expose other data publicly.
+
+    What Modules should we use?
+    UI Module                   Data Module
+    get input values            add the new item to our data structure
+    add the new item to the     Calculate the budget
+        UI              
+    Update the UI
+
+
+    Controller Module
+    Add event handler
+
+
+    // 77. Implmenting the module pattern
+
+    -   How to use the module pattern;
+    - More about private and public data, encapsulation and separation of concerns.
+
+    - Why use modules? To keep pieces of code that are related to one another
+        together. Inside of seperate, independant, and organized units. and in each of these modules we'll have variables and functions that are private which means that they are only acceptable inside of the module, we want that so that no other code can overwrite our data, so our data our code it's going to be safe. this is really important and besides private variables and methods we're also are going to have public methods, whichs means we expose them to the public so that other functions and modules can access and use them. this is called data encapsulation. So data encapsulation allows us to hide the implamentation details of a sepfic module from the outside code. so that we only expose a public inferface, which is sometimes called an api. it is extremely important to have all of this im mind when  building complex applications. 
+
+        So how do we create modules in javascript? we use the module pattern, which is incredabliy powerful but also simple. we need to know concepts of closures and IIFES.
+
+        
