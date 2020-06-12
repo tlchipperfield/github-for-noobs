@@ -114,6 +114,11 @@ var UIController = (function() {
         inputBtn: '.add__btn',
         incomeContainer: '.income__list',
         expensesContainer: '.expenses__list',
+        budgetLabel: '.budget__value',
+        incomeLabel: '.budget__income--value',
+        expensesLabel: '.budget__expenses--value',
+        percentageLabel: '.budget__expenses--percentage'
+
     };
 
     // UI Controller Module returns
@@ -168,6 +173,19 @@ var UIController = (function() {
             fieldsArray[0].focus();
         },
 
+        displayBudget: function(obj) {
+
+            document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
+            document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
+            document.querySelector(DOMstrings.expensesLabel).textContent = obj.totalExp;
+            if (obj.percentage > 0) {
+                document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + '%';
+            } else {
+                document.querySelector(DOMstrings.percentageLabel).textContent = '---';
+            }
+
+        },
+
 
         // Allows public pass DOMstrings
         getDOMstrings: function() {
@@ -195,6 +213,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     };
 
+    //updatre budget Method
     var updateBudget = function() {
         // 1. Calculate the budget
         budgetCtrl.calculateBudget();
@@ -204,7 +223,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
 
         // 3. Display the budget on the UI
-        console.log(budget);
+        UICtrl.displayBudget(budget);
     }
     // Add the item to either Income or Expense objects
     var ctrlAddItem = function(){
@@ -232,6 +251,12 @@ var controller = (function(budgetCtrl, UICtrl) {
         init: function() {
             console.log('Application has started.');
             setupEventListeners();
+            UICtrl.displayBudget({
+                budget: 0,
+                totalInc: 0,
+                totalExp: 0,
+                percentage: -1
+            });
         }
     }
 
@@ -239,5 +264,6 @@ var controller = (function(budgetCtrl, UICtrl) {
 
 
 controller.init();
+
 
 
