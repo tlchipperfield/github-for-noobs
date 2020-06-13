@@ -245,6 +245,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     };
 
+
     //updatre budget Method
     var updateBudget = function() {
         // 1. Calculate the budget
@@ -257,6 +258,23 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 3. Display the budget on the UI
         UICtrl.displayBudget(budget);
     }
+
+    
+    // Update Percentages
+    var updatePercentages = function(){
+
+        // 1) calculate percentages
+
+
+        // 2) read them from the budget controller
+
+
+        // 3) update user interface with new percentages
+
+
+
+    }
+
     // Add the item to either Income or Expense objects
     var ctrlAddItem = function(){
 
@@ -274,6 +292,8 @@ var controller = (function(budgetCtrl, UICtrl) {
             UICtrl.clearFields();
             // 4. Calculate and update Budget
             updateBudget();
+            // 5. calculate and update percentages
+            updatePercentages();
         }
     }
 
@@ -296,6 +316,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
             // 3. Update and show the new budget
             updateBudget();
+            
+            // 5. calculate and update percentages
+            updatePercentages();
 
         }
     }
