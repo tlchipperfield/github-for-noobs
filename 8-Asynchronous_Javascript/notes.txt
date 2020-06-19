@@ -1,0 +1,7 @@
+Promise
+
+Statuses
+
+Pending -> event happens -> Settled / Resolved
+                            /               \
+                        Fulfilled           rejected
