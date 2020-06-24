@@ -1,1 +1,3 @@
-# the complete javascript course
+Tylers Javascript course
+
+crashing through git/html/css/javascript
