@@ -1,6 +1,13 @@
-//Javascript index file  
+import axios from 'axios';
 
-import num from './test';
-const x = 23;
-console.log(`I imported ${num} from another module!`);
-console.log(`variable x is ${x}`);
+async function getResults(query) {
+    try {
+        const res = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`);
+        const recipes = res.data.recipes;
+        console.log(recipes);
+    } catch (error) {
+        alert(error);
+    }
+    
+}
+getResults('pizza');
