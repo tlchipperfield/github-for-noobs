@@ -1,6 +1,5 @@
 import { elements } from './base';
 
-
 export const getInput = () => elements.searchInput.value;
 
 export const clearInput = () => elements.searchInput.value = '';
@@ -32,8 +31,6 @@ const limitRecipeTitle = (title, limit = 17) => {
     return title;
 }
 
-
-
 const renderRecipe = recipe => {
     const markup = `
         <li>
@@ -49,9 +46,7 @@ const renderRecipe = recipe => {
         </li>
     `;
     elements.searchResList.insertAdjacentHTML('beforeend', markup);
-
 };
-
 
 // type: prev or next
 const createButton = (page, type) => `
