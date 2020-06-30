@@ -7,15 +7,25 @@ export const clearInput = () => elements.searchInput.value = '';
 export const clearResults = () => {
     elements.searchResList.innerHTML = '';
     elements.searchResPages.innerHTML = '';
-}
+};
+
+export const highlightSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`.results__link[href*="${id}"]`).classList.add('results__link--active');
+};
+
+
+
 /*
 Pasta with tomato and spinach
 acc: 0 / acc + cur.length = 5 / newTitle = ['Pasta']
 acc: 5 / acc + cur.length = 5 / newTitle = ['Pasta', 'with']
 
 */
-
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
@@ -25,7 +35,7 @@ const limitRecipeTitle = (title, limit = 17) => {
             return acc + cur.length;
         }, 0);
 
-        //return the result
+        // return the result
         return `${newTitle.join(' ')} ...`;
     }
     return title;
@@ -34,13 +44,13 @@ const limitRecipeTitle = (title, limit = 17) => {
 const renderRecipe = recipe => {
     const markup = `
         <li>
-            <a class="likes__link" href="#${recipe.recipe_id}">
-                <figure class = "likes__fig">
+            <a class="results__link" href="#${recipe.recipe_id}">
+                <figure class="results__fig">
                     <img src="${recipe.image_url}" alt="${recipe.title}">
                 </figure>
-                <div class="likes__data">
-                    <h4 class="likes__name">${limitRecipeTitle(recipe.title)}</h4>
-                    <p class="likes__author">${recipe.publisher}</p>
+                <div class="results__data">
+                    <h4 class="results__name">${limitRecipeTitle(recipe.title)}</h4>
+                    <p class="results__author">${recipe.publisher}</p>
                 </div>
             </a>
         </li>
@@ -50,7 +60,7 @@ const renderRecipe = recipe => {
 
 // type: prev or next
 const createButton = (page, type) => `
-    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1: page + 1}>
+    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
         <svg class="search__icon">
             <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left': 'right'}"></use>
         </svg>
