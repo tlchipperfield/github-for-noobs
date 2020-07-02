@@ -15,7 +15,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 //
 
 const state = {};
-window.state = state;
 
 /******
  * SEACH CONTROLLER
@@ -59,7 +58,6 @@ elements.searchResPages.addEventListener('click', (e) => {
     const goToPage = parseInt(btn.dataset.goto, 10);
     searchView.clearResults();
     searchView.renderResults(state.search.result, goToPage);
-    console.log(goToPage);
   }
 });
 
@@ -201,5 +199,3 @@ elements.recipe.addEventListener('click', (e) => {
     controlLike();
   }
 });
-
-window.l = new List();
