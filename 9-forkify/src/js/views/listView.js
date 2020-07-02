@@ -1,4 +1,4 @@
-import { elements } from './base'
+import { elements } from './base';
 
 export const renderItem = (item) => {
   const markup = `
@@ -14,11 +14,11 @@ export const renderItem = (item) => {
                 </svg>
             </button>
         </li>
-    `
-  elements.shopping.insertAdjacentHTML('beforeend', markup)
-}
+    `;
+  elements.shopping.insertAdjacentHTML('beforeend', markup);
+};
 
 export const deleteItem = (id) => {
-  const item = document.querySelector(`[data-itemid="${id}"]`)
-  if (item) item.parentElement.removeChild(item)
-}
+  const item = document.querySelector(`[data-itemid="${id}"]`);
+  if (item) item.parentElement.removeChild(item);
+};

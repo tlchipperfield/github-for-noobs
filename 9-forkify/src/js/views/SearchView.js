@@ -1,23 +1,23 @@
-import { elements } from './base'
+import { elements } from './base';
 
-export const getInput = () => elements.searchInput.value
+export const getInput = () => elements.searchInput.value;
 
-export const clearInput = () => (elements.searchInput.value = '')
+export const clearInput = () => (elements.searchInput.value = '');
 
 export const clearResults = () => {
-  elements.searchResList.innerHTML = ''
-  elements.searchResPages.innerHTML = ''
-}
+  elements.searchResList.innerHTML = '';
+  elements.searchResPages.innerHTML = '';
+};
 
 export const highlightSelected = (id) => {
-  const resultsArr = Array.from(document.querySelectorAll('.results__link'))
+  const resultsArr = Array.from(document.querySelectorAll('.results__link'));
   resultsArr.forEach((el) => {
-    el.classList.remove('results__link--active')
-  })
+    el.classList.remove('results__link--active');
+  });
   document
     .querySelector(`.results__link[href*="${id}"]`)
-    .classList.add('results__link--active')
-}
+    .classList.add('results__link--active');
+};
 
 /*
 Pasta with tomato and spinach
@@ -26,20 +26,20 @@ acc: 5 / acc + cur.length = 5 / newTitle = ['Pasta', 'with']
 
 */
 export const limitRecipeTitle = (title, limit = 17) => {
-  const newTitle = []
+  const newTitle = [];
   if (title.length > limit) {
     title.split(' ').reduce((acc, cur) => {
       if (acc + cur.length <= limit) {
-        newTitle.push(cur)
+        newTitle.push(cur);
       }
-      return acc + cur.length
-    }, 0)
+      return acc + cur.length;
+    }, 0);
 
     // return the result
-    return `${newTitle.join(' ')} ...`
+    return `${newTitle.join(' ')} ...`;
   }
-  return title
-}
+  return title;
+};
 
 const renderRecipe = (recipe) => {
   const markup = `
@@ -56,9 +56,9 @@ const renderRecipe = (recipe) => {
                 </div>
             </a>
         </li>
-    `
-  elements.searchResList.insertAdjacentHTML('beforeend', markup)
-}
+    `;
+  elements.searchResList.insertAdjacentHTML('beforeend', markup);
+};
 
 // type: prev or next
 const createButton = (page, type) => `
@@ -71,36 +71,36 @@ const createButton = (page, type) => `
             }"></use>
         </svg>
         <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
-    </button>`
+    </button>`;
 
 const renderButtons = (page, numResults, resPerPage) => {
-  const pages = Math.ceil(numResults / resPerPage)
+  const pages = Math.ceil(numResults / resPerPage);
 
-  let button
+  let button;
   if (page === 1) {
     // only button to go to next page
-    button = createButton(page, 'next')
+    button = createButton(page, 'next');
   } else if (page < pages) {
     // both bottons
     button = `
             ${createButton(page, 'next')}
             ${createButton(page, 'prev')}
-            `
+            `;
   } else if (page === pages) {
     //only button to go back a page
-    button = createButton(page, 'prev')
+    button = createButton(page, 'prev');
   }
 
-  elements.searchResPages.insertAdjacentHTML('afterbegin', button)
-}
+  elements.searchResPages.insertAdjacentHTML('afterbegin', button);
+};
 
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
   //render results of the current page
-  const start = (page - 1) * resPerPage
-  const end = page * resPerPage
+  const start = (page - 1) * resPerPage;
+  const end = page * resPerPage;
 
-  recipes.slice(start, end).forEach(renderRecipe)
+  recipes.slice(start, end).forEach(renderRecipe);
 
   //render pagination buttons
-  renderButtons(page, recipes.length, resPerPage)
-}
+  renderButtons(page, recipes.length, resPerPage);
+};
